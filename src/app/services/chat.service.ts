@@ -18,4 +18,9 @@ export class ChatService {
     formData.append('password', user.password);
     return this.http.post(this.Url+"register", formData);
   }
+  loginUser(user) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.Url+`login_check`, user, {headers});
+  }
 }
