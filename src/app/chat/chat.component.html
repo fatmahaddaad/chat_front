@@ -1,3 +1,28 @@
-<p>
-  chat works!
-</p>
+<style>
+  .hidden {
+    display: none;
+}
+</style>
+<a class="nav-link" href="#" (click)="onLogout()">Logout</a>
+<div *ngIf="users">
+  <ul *ngFor="let user of users">
+    <li><button class="btn btn-link" title="{{ user.username }}" (click)="OpenConversation(user.id, user.username)">{{ user.username }}</button></li>
+    <div [ngClass]="{hidden : MyClass[user.id]}" id="conversation_form_{{user.id}}" >
+      <div class="" *ngFor="let conversation of user.conversation">
+        {{ conversation.title }}
+        <div class="" *ngFor="let message of conversation.messages">
+            {{ message.content }}
+        </div>
+        <form method="POST" (submit)="AddMessage(conversation.id, index)" >
+          <div class="form-group">
+              <label for="message_content"></label>
+              <textarea class="form-control" name="message_content{{index}}" [(ngModel)]="message_content[index]"></textarea>
+          </div>
+          <div>
+              <input type="submit" value="submit" class="btn btn-default" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </ul>
+</div>

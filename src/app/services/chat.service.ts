@@ -23,4 +23,30 @@ export class ChatService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.Url+`login_check`, user, {headers});
   }
+  getUsers() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+"usersShow", {headers});
+  }
+  getUser(id) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.Url+`user/${id}`, {headers});
+  }
+  addConversation(conversation) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('title', conversation.title);
+    formData.append('send_to', conversation.send_to);
+    return this.http.post(this.Url+"addConversation", formData, {headers});
+  }
+  addMessage(message) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    const formData: FormData = new FormData();
+    formData.append('content', message.text);
+    formData.append('conversation_id', message.conversation);
+    return this.http.post(this.Url+"addMessage", formData, {headers});
+  }
 }
