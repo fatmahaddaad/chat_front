@@ -7,7 +7,7 @@ import { Http, Headers } from '@angular/http';
 export class ChatService {
 
   constructor(private http: Http) { }
-  Url = 'http://127.0.0.1:8001/';
+  Url = 'http://127.0.0.1:8000/';
   createAuthorizationHeader(headers: Headers) {
     headers.append('Authorization', 'Bearer '+localStorage.getItem('token')); 
   }
@@ -46,7 +46,7 @@ export class ChatService {
     this.createAuthorizationHeader(headers);
     const formData: FormData = new FormData();
     formData.append('content', message.text);
-    formData.append('conversation_id', message.conversation);
+    formData.append('conversation', message.conversation);
     return this.http.post(this.Url+"addMessage", formData, {headers});
   }
 }

@@ -75,10 +75,6 @@ export class ChatComponent implements OnInit {
         this.notifier.notify( 'success', 'message added successfully' );
         this.chatService.getUsers().subscribe(file => {
           this.users = file.json();
-          console.log(this.users);
-          this.users.forEach(element => {
-            this.MyClass[element.id]= true;
-          });
         });
       }, (err) => {
         console.log("err "+err);
