@@ -3,15 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReisterComponent } from './reister/reister.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    ReisterComponent,
     RegisterComponent,
     LoginComponent,
     ChatComponent
